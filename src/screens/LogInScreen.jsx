@@ -1,23 +1,39 @@
 import React from 'react';
 import {
-  View, Text, TextInput, StyleSheet,
+  View, Text, TextInput, StyleSheet, TouchableOpacity,
 } from 'react-native';
 
-import AddBar from '../components/AppBar';
 import Button from '../components/Button';
 
-export default function LogIn() {
+export default function LogIn(props) {
+  const { navigation } = props;
   return (
     <View style={styles.container}>
-      <AddBar />
       <View style={styles.inner}>
         <Text style={styles.Title}>Log In</Text>
         <TextInput style={styles.input} value="Email Address" />
         <TextInput style={styles.input} value="Pass Word" />
-        <Button label="Submit" />
+        <Button
+          label="Submit"
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{ name: 'MemoList' }],
+            });
+          }}
+        />
         <View style={styles.footer}>
           <Text style={styles.footerText}>Not registered?</Text>
-          <Text style={styles.footerLink}>Sigh up here!</Text>
+          <TouchableOpacity
+            onPress={() => {
+              navigation.reset({
+                index: 0,
+                routes: [{ name: 'SighUp' }],
+              });
+            }}
+          >
+            <Text style={styles.footerLink}>Sigh up here!</Text>
+          </TouchableOpacity>
         </View>
       </View>
     </View>
