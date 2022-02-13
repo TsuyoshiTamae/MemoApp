@@ -22,7 +22,6 @@ export default function SighUpScreen(props) {
         });
       })
       .catch((error) => {
-        console.log(error.code, error.message);
         Alert.alert(error.code);
       });
   }
